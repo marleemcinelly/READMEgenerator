@@ -1,6 +1,6 @@
 // array of questions for user
 const inquirer = require('inquirer');
-const fs = require(fs);
+const fs = require('fs');
 
 inquirer
     .prompt([
@@ -58,8 +58,8 @@ inquirer
     ])
 .then((response)=>{
     // console.log(response.title, response.description, response.install, response.use, response.contribute, response.test, response.license, response.userGitHub, response.userEmail, response.qOrC);
-    const data = '# ${response.title}\n## Description\n${response.description}\n## Table of Contents(under construction)\n## Installation\n${response.install}\n## Usage\n${response.use}\n## License\n${response.license}\n## Contributing\n${response.contribute}\n## Tests\n${response.test}\n## Questions?\nYou can find me on GitHub through my username: ${response.userGitHub}\nYou can also email me directly at: ${response.userEmail}\n${response.qOrC}';
-    fs.writeFile(`README.md`, JSON.stringify(data, null), `\t`), err ? console.log(err) : console.log('File generated successfully! Check your folder!');
+    const data = `# ${response.title}\n## Description\n${response.description}\n## Table of Contents(under construction)\n## Installation\n${response.install}\n## Usage\n${response.use}\n## License\n${response.license}\n## Contributing\n${response.contribute}\n## Tests\n${response.test}\n## Questions?\nYou can find me on GitHub through my username: ${response.userGitHub}\nYou can also email me directly at: ${response.userEmail}\n${response.qOrC}`;
+    fs.writeFile(`${response.title}README.md`, JSON.stringify(data, null), `\t`), err ? console.log(err) : console.log('File generated successfully! Check your folder!');
 });
 
 // const questions = [
@@ -93,13 +93,13 @@ inquirer
 // }
 
 // function to write README file
-function writeToFile(fileName, data) {
-}
+// function writeToFile(fileName, data) {
+// }
 
 // function to initialize program
-function init() {
+// function init() {
 
-}
+// }
 
-// function call to initialize program
-init();
+// // function call to initialize program
+// init();

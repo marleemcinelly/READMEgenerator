@@ -9,7 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fs": "0.0.1-security",
     "inquirer": "^6.5.2"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marleemcinelly/READMEgenerator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marleemcinelly/READMEgenerator/issues"
+  },
+  "homepage": "https://github.com/marleemcinelly/READMEgenerator#readme"
 }
