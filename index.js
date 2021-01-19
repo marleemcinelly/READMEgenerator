@@ -52,14 +52,14 @@ inquirer
         },
         {
             type: 'input',
-            message: 'Are there any additional instructions if someone needs to contact you?',
+            message: 'Please enter any additional contact instructions (If none, hit enter)',
             name: 'qOrC',
         }
     ])
 .then((response)=>{
     // console.log(response.title, response.description, response.install, response.use, response.contribute, response.test, response.license, response.userGitHub, response.userEmail, response.qOrC);
-    const data = `# ${response.title} \n ## Description ${response.description} ## Table of Contents(under construction) ## Installation ${response.install} ## Usage ${response.use} ## License ${response.license} ## Contributing ${response.contribute} ## Tests ${response.test} ## Questions? You can find me on GitHub through my username: ${response.userGitHub} You can also email me directly at: ${response.userEmail} ${response.qOrC}`;
-    fs.writeFile(`README.md`, JSON.stringify(data, null, '\n'), (err) => err ? console.log(err) : console.log('File generated successfully! Check your folder!'));
+    const data = ` # ${response.title}\n\n # Description\n\n ${response.description}\n\n # Table of Contents\n\n * [Installation](#-installation)\n * [Useage](#-usage)\n * [License](#-license)\n * [Contributing](#-contributing)\n * [Tests](#-tests)\n * [Questions](#-questions)\n\n # Installation\n\n ${response.install}\n\n # Usage\n\n ${response.use}\n\n # License\n\n ${response.license}\n\n # Contributing\n\n ${response.contribute}\n\n # Tests\n\n ${response.test}\n\n # Questions?\n\n You can find me on GitHub through my username: ${response.userGitHub}\n\n You can also email me directly at: ${response.userEmail} \n\n${response.qOrC}`;
+    fs.writeFile(`${response.title}.md`, data, (err) => err ? console.log(err) : console.log('File generated successfully! Check your folder!'));
 });
 
 // const questions = [
