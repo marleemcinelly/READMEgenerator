@@ -58,8 +58,8 @@ inquirer
     ])
 .then((response)=>{
     // console.log(response.title, response.description, response.install, response.use, response.contribute, response.test, response.license, response.userGitHub, response.userEmail, response.qOrC);
-    const data = `# ${response.title} \n ## Description \n ${response.description} \n ## Table of Contents(under construction) \n ## Installation \n ${response.install} \n ## Usage \n ${response.use} \n ## License \n ${response.license} \n ## Contributing \n ${response.contribute} \n ## Tests \n ${response.test} \n ## Questions? \n You can find me on GitHub through my username: ${response.userGitHub} \n You can also email me directly at: ${response.userEmail} \n ${response.qOrC}`;
-    fs.writeFile(`${response.title}README.md`, JSON.stringify(data, null, `\t`), (err) => err ? console.log(err) : console.log('File generated successfully! Check your folder!'));
+    const data = `# ${response.title} \n ## Description ${response.description} ## Table of Contents(under construction) ## Installation ${response.install} ## Usage ${response.use} ## License ${response.license} ## Contributing ${response.contribute} ## Tests ${response.test} ## Questions? You can find me on GitHub through my username: ${response.userGitHub} You can also email me directly at: ${response.userEmail} ${response.qOrC}`;
+    fs.writeFile(`README.md`, JSON.stringify(data, null, '\n'), (err) => err ? console.log(err) : console.log('File generated successfully! Check your folder!'));
 });
 
 // const questions = [
