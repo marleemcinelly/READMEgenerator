@@ -41,12 +41,12 @@ inquirer
             choices: [
                  apache = {
                     name: 'Apache 2.0',
-                    value: 'here is the legal jargon',
+                    value: `Licensed under the Apache License, Version 2.0 (the "License");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an "AS IS" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.`,
                     short: 'You chose the Apache 2.0 License for your project! See the License section of your generated README for legal details.'
                 },
                 boost = {
                     name: 'Boost 1.0',
-                    value: 'here is the legal jargon',
+                    value: `Distributed under the Boost Software License, Version 1.0.\n (See accompanying file LICENSE_1_0.txt or copy at\n https://www.boost.org/LICENSE_1_0.txt)`,
                     short: 'You chose the Boost Software License 1.0 for your project! See the License section of your generated README for legal details.'
                 },
                 bsd3 = {
@@ -108,7 +108,7 @@ inquirer
                     name: 'MPL 2.0',
                     value: 'here is the legal jargon',
                     short: 'You chose the Mozilla Public License 2.0 for your project! See the License section of your generated README for legal details.'
-                },// choices: [ , , , , , , ],],
+                },
                 ofl11 = {
                     name: 'Open Font-1.1',
                     value: 'here is the legal jargon',
@@ -148,13 +148,15 @@ inquirer
     ])
 .then((response)=>{
     // console.log(response.title, response.description, response.install, response.use, response.contribute, response.test, response.license, response.userGitHub, response.userEmail, response.qOrC);
+    var year = new Date().getFullYear();
     var userLicense = 'placeholder';
-    if (`${response.license}` === 'free') {
-        var userLicense = `[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`;
-    } else {
+    // the value it's reading is the legal jargon do not ask me why i don't want it to but i am tired and it works so just roll with it future self
+    if (`${response.license}` === 'Licensed under the Apache License, Version 2.0 (the "License");\n you may not use this file except in compliance with the License.\n You may obtain a copy of the License at\n\n http://www.apache.org/licenses/LICENSE-2.0\n\n Unless required by applicable law or agreed to in writing, software\n distributed under the License is distributed on an "AS IS" BASIS,\n WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n See the License for the specific language governing permissions and\n limitations under the License.') {
+        var userLicense = `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
+    } else if (`${response.license}` === 'Distributed under the Boost Software License, Version 1.0.\n (See accompanying file LICENSE_1_0.txt or copy at\n https://www.boost.org/LICENSE_1_0.txt)'){
         var userLicense = `[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`;
     };
-    const data = userLicense + `\n\n # ${response.title}\n\n # Description\n\n ${response.description}\n\n # Table of Contents\n\n * [Installation](#-installation)\n * [Useage](#-usage)\n * [License](#-license)\n * [Contributing](#-contributing)\n * [Tests](#-tests)\n * [Questions](#-questions)\n\n # Installation\n\n ${response.install}\n\n # Usage\n\n ${response.use}\n\n # License\n\n ${response.license}\n\n # Contributing\n\n ${response.contribute}\n\n # Tests\n\n ${response.test}\n\n # Questions?\n\n You can find me on GitHub through my username: ${response.userGitHub}\n\n You can also email me directly at: ${response.userEmail} \n\n${response.qOrC}`;
+    const data = userLicense + `\n\n # ${response.title}\n\n # Description\n\n ${response.description}\n\n # Table of Contents\n\n * [Installation](#-installation)\n * [Useage](#-usage)\n * [License](#-license)\n * [Contributing](#-contributing)\n * [Tests](#-tests)\n * [Questions](#-questions)\n\n # Installation\n\n ${response.install}\n\n # Usage\n\n ${response.use}\n\n # License\n\n Copyright ` + year + ` ${response.userGitHub}\n\n ${response.license}\n\n # Contributing\n\n ${response.contribute}\n\n # Tests\n\n ${response.test}\n\n # Questions?\n\n You can find me on GitHub through my username: ${response.userGitHub}\n\n You can also email me directly at: ${response.userEmail} \n\n${response.qOrC}`;
     fs.writeFile(`${response.title}.md`, data, (err) => err ? console.log(err) : console.log('File generated successfully! Check your folder!'));
 });
 
